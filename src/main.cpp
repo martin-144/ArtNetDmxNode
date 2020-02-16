@@ -1,9 +1,6 @@
 #include <Arduino.h>
 #include <ArtnetnodeWifi.h>
-
-//Wifi settings
-const char* ssid = "MCWLAN2";
-const char* password = "brechtelsbauerwpakey";
+#include <secrets.h>
 
 // That seems to be the LED on my XLR Plug
 const int ledPin = 0x0c;
