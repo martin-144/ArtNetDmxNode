@@ -113,10 +113,10 @@ void setup()
   // set a starting universe if you wish, defaults to 0
   //artnetnode.setStartingUniverse(4);
   artnetnode.setNumPorts(1);
-  // artnetnode.enableDMXOutput(0);
-  // artnetnode.enableDMXOutput(1);
+  artnetnode.enableDMXOutput(1);
   artnetnode.enableDMXOutput(2);
-  // artnetnode.enableDMXOutput(3);
+  artnetnode.enableDMXOutput(3);
+  artnetnode.enableDMXOutput(4);
   artnetnode.begin();
 
   // this will be called for each packet received
