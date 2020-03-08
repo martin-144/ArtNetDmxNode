@@ -76,10 +76,10 @@ void onDmxFrame(uint16_t universe, uint16_t length, uint8_t sequence, uint8_t* d
   */
 
   // Send "break" as a "slow" zero.
-  Serial1.begin(54700, SERIAL_5N2);
+  Serial1.begin(54700, SERIAL_8N2);
   Serial1.write(0);
 
-  delayMicroseconds(100);
+  // delayMicroseconds(100);
 
   Serial1.begin(250000, SERIAL_8N2);
   Serial1.write(0); // Start-Byte
@@ -112,7 +112,7 @@ void setup()
   artnetnode.setLongName("ESP8266 DMX Art-Net-Node");
   // set a starting universe if you wish, defaults to 0
   //artnetnode.setStartingUniverse(4);
-  artnetnode.setNumPorts(1);
+  artnetnode.setNumPorts(4);
   artnetnode.enableDMXOutput(1);
   artnetnode.enableDMXOutput(2);
   artnetnode.enableDMXOutput(3);
