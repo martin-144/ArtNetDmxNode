@@ -50,7 +50,7 @@ void onDmxFrame(uint16_t universe, uint16_t length, uint8_t sequence, uint8_t* d
   digitalWrite(ledPin, 1);
 
   boolean tail = false;
-  /*
+
   Serial.print("DMX: Univ: ");
   Serial.print(universe, DEC);
   Serial.print(", Seq: ");
@@ -69,11 +69,6 @@ void onDmxFrame(uint16_t universe, uint16_t length, uint8_t sequence, uint8_t* d
     Serial.print(data[i], HEX);
     Serial.print(" ");
   }
-  if (tail) {
-    Serial.print("...");
-  }
-  Serial.println();
-  */
 
   // Send "break" as a "slow" zero.
   Serial1.begin(54700, SERIAL_8N2);
@@ -97,14 +92,17 @@ void setup()
 {
   // put your setup code here, to run once:
   Serial.begin(115200);
-  // Serial1.begin(250000, SERIAL_8N1);
-  Serial.print("Serial Starting...\n");
+  Serial.print("Hello 123");
+
+  Serial1.begin(250000, SERIAL_8N1);
+  Serial.print("Serial DMX Starting...\n");
 
   // set LED port
   pinMode(ledPin, OUTPUT);
   // pinMode(dmxPin, OUTPUT);
   digitalWrite(ledPin, HIGH);
 
+  
   ConnectWifi();
   // max. 17 characters
   artnetnode.setShortName("DMX Art-Net-Node");
@@ -122,16 +120,15 @@ void setup()
   // this will be called for each packet received
   artnetnode.setArtDmxCallback(onDmxFrame);
   digitalWrite(ledPin, LOW);
-
 }
 
 void loop()
 {
-  // Serial1.print("Hallo123");
+  // Serial.print("Hello 456");
   // Serial.printf("Hello again...\n");
 
   // we call the read function inside the loop
   artnetnode.read();
 
-  // digitalWrite(dmxPin, LOW);
+  digitalWrite(ledPin, LOW);
 }
