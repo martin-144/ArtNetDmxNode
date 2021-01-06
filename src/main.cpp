@@ -1,6 +1,11 @@
 #include <Arduino.h>
 #include <ArtnetnodeWifi.h>
+#include <ESP8266WiFi.h>
 #include <secrets.h>
+
+IPAddress local_IP(192,168,4,22);
+IPAddress gateway(192,168,4,9);
+IPAddress subnet(255,255,255,0);
 
 // That seems to be the LED on my XLR Plug
 const int ledPin = 0x0c;
@@ -11,7 +16,20 @@ const int dmxPin = 0x02;
 // WiFiUDP UdpSend;
 ArtnetnodeWifi artnetnode;
 
-boolean ConnectWifi(void)
+boolean ConnectWifiBeAp(void)
+{
+  boolean result = WiFi.softAP("ArtNet DMX WiFi Adapter", "kolping1963");
+  if(result == true)
+  {
+    Serial.println("Ready");
+  }
+  else
+  {
+    Serial.println("Failed!");
+  }
+}
+
+boolean ConnectWifiToAp(void)
 {
   boolean state = true;
   int i = 0;
@@ -103,8 +121,8 @@ void setup()
   // pinMode(dmxPin, OUTPUT);
   digitalWrite(ledPin, HIGH);
 
-  
-  ConnectWifi();
+  // ConnectWifiToAp();
+  ConnectWifiBeAp();
   // max. 17 characters
   artnetnode.setShortName("DMX Art-Net-Node");
   // max. 63 characters
