@@ -58,6 +58,7 @@ void onDmxFrame(uint16_t universe, uint16_t length, uint8_t sequence, uint8_t* d
   Serial.print(", Data (");
   Serial.print(length, DEC);
   Serial.print("): ");
+  Serial.println();
 
   if (length > 16) {
     length = 16;
@@ -71,10 +72,10 @@ void onDmxFrame(uint16_t universe, uint16_t length, uint8_t sequence, uint8_t* d
   }
 
   // Send "break" as a "slow" zero.
-  Serial1.begin(54700, SERIAL_8N2);
+  Serial1.begin(54700, SERIAL_5N2);
   Serial1.write(0);
 
-  // delayMicroseconds(100);
+  delayMicroseconds(100);
 
   Serial1.begin(250000, SERIAL_8N2);
   Serial1.write(0); // Start-Byte
